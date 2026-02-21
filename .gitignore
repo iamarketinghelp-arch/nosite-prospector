@@ -1,0 +1,50 @@
+# ---- Dependencies ----
+node_modules/
+.pnp
+.pnp.js
+
+# ---- Build outputs ----
+.next/
+out/
+dist/
+build/
+
+# ---- Environment files (NEVER commit these) ----
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+.env.staging
+
+# ---- Testing ----
+coverage/
+playwright-report/
+test-results/
+
+# ---- Prisma ----
+# Generated client is rebuilt on deploy; do not commit
+prisma/generated/
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pino.log
+
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Vercel ----
+.vercel
+
+# ---- Misc ----
+*.tsbuildinfo
+next-env.d.ts
