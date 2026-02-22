@@ -101,19 +101,19 @@ npx eslint . --fix       # Lint and auto-fix
 
 See `.env.example` for the full list. Key variables:
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `SUPABASE_ANON_KEY` | Supabase anonymous key (frontend) |
-| `SUPABASE_SERVICE_KEY` | Supabase service role key (backend only) |
-| `DATABASE_URL` | PostgreSQL connection string |
-| `GOOGLE_PLACES_KEY` | Google Places + Geocoding API key |
-| `YELP_API_KEY` | Yelp Fusion API key |
-| `REDIS_URL` | Upstash Redis connection URL |
-| `STRIPE_SECRET_KEY` | Stripe secret key (backend only) |
-| `STRIPE_PUBLISHABLE_KEY` | Stripe publishable key (frontend) |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
-| `SENTRY_DSN` | Sentry error tracking DSN |
+| Variable                   | Description                              |
+| -------------------------- | ---------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL                     |
+| `SUPABASE_ANON_KEY`        | Supabase anonymous key (frontend)        |
+| `SUPABASE_SERVICE_KEY`     | Supabase service role key (backend only) |
+| `DATABASE_URL`             | PostgreSQL connection string             |
+| `GOOGLE_PLACES_KEY`        | Google Places + Geocoding API key        |
+| `YELP_API_KEY`             | Yelp Fusion API key                      |
+| `REDIS_URL`                | Upstash Redis connection URL             |
+| `STRIPE_SECRET_KEY`        | Stripe secret key (backend only)         |
+| `STRIPE_PUBLISHABLE_KEY`   | Stripe publishable key (frontend)        |
+| `STRIPE_WEBHOOK_SECRET`    | Stripe webhook signing secret            |
+| `SENTRY_DSN`               | Sentry error tracking DSN                |
 
 ## Build Playbook
 

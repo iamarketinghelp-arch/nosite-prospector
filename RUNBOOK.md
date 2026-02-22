@@ -277,16 +277,16 @@ The script should:
 Example script outline (`scripts/recheck-pending.ts`):
 
 ```typescript
-import { PrismaClient } from '@prisma/client';
-import { Queue } from 'bullmq';
+import { PrismaClient } from "@prisma/client";
+import { Queue } from "bullmq";
 
 const prisma = new PrismaClient();
-const queue = new Queue('head-checks');
+const queue = new Queue("head-checks");
 
 async function recheckPending() {
   const businesses = await prisma.business.findMany({
     where: {
-      qualification_status: { in: ['pending', 'failed'] },
+      qualification_status: { in: ["pending", "failed"] },
     },
     select: { id: true, website_url: true },
   });
@@ -294,7 +294,7 @@ async function recheckPending() {
   console.log(`Found ${businesses.length} businesses to recheck`);
 
   for (const biz of businesses) {
-    await queue.add('head-check', {
+    await queue.add("head-check", {
       businessId: biz.id,
       url: biz.website_url,
     });
@@ -459,4 +459,4 @@ curl -s "$REDIS_URL/PING" -H "Authorization: Bearer $REDIS_TOKEN"
 
 ---
 
-*Last updated: 2026-02-21*
+_Last updated: 2026-02-21_

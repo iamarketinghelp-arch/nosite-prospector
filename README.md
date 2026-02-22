@@ -8,22 +8,22 @@ NoSite Prospector queries Google Places and Yelp for local businesses, deduplica
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript (strict) |
-| Database | Supabase (PostgreSQL) + Prisma ORM |
-| Auth | Supabase Auth (email/password + Google OAuth) |
-| Styling | Tailwind CSS + shadcn/ui |
-| State | Zustand |
-| Cache / Queues | Redis (Upstash + BullMQ) |
-| Data APIs | Google Places API, Yelp Fusion API |
-| Maps | Leaflet + OpenStreetMap (React-Leaflet) |
-| Payments | Stripe |
-| Testing | Jest (unit/integration), Playwright (E2E) |
-| Logging | Pino (structured JSON) |
-| Error Tracking | Sentry |
-| CI/CD | GitHub Actions → Vercel |
+| Layer          | Technology                                    |
+| -------------- | --------------------------------------------- |
+| Framework      | Next.js 14 (App Router)                       |
+| Language       | TypeScript (strict)                           |
+| Database       | Supabase (PostgreSQL) + Prisma ORM            |
+| Auth           | Supabase Auth (email/password + Google OAuth) |
+| Styling        | Tailwind CSS + shadcn/ui                      |
+| State          | Zustand                                       |
+| Cache / Queues | Redis (Upstash + BullMQ)                      |
+| Data APIs      | Google Places API, Yelp Fusion API            |
+| Maps           | Leaflet + OpenStreetMap (React-Leaflet)       |
+| Payments       | Stripe                                        |
+| Testing        | Jest (unit/integration), Playwright (E2E)     |
+| Logging        | Pino (structured JSON)                        |
+| Error Tracking | Sentry                                        |
+| CI/CD          | GitHub Actions → Vercel                       |
 
 ---
 
@@ -69,13 +69,13 @@ npx eslint . --fix       # Lint and auto-fix
 
 ## Plans
 
-| Feature | Free | Pro |
-|---|---|---|
-| Results per search | 50 | 200 |
-| Searches per day | 5 | Unlimited |
-| CSV export | Yes | Yes |
-| Google Sheets export | — | Yes |
-| Contact enrichment (v1.1) | — | Yes |
+| Feature                   | Free | Pro       |
+| ------------------------- | ---- | --------- |
+| Results per search        | 50   | 200       |
+| Searches per day          | 5    | Unlimited |
+| CSV export                | Yes  | Yes       |
+| Google Sheets export      | —    | Yes       |
+| Contact enrichment (v1.1) | —    | Yes       |
 
 ---
 

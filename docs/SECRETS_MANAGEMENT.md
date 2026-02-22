@@ -35,15 +35,15 @@ This document defines how secrets (API keys, database credentials, tokens) are s
 
 **Why Doppler:**
 
-| Factor | Doppler |
-|---|---|
-| Setup complexity | 5-minute setup; CLI-driven |
-| Free tier | 5 team members, unlimited secrets, unlimited projects |
-| Vercel integration | Native integration (one-click sync) |
-| GitHub Actions | Official action (`dopplerhq/secrets-fetch-action`) |
-| Rotation support | Version history + rollback on every secret change |
-| Audit log | Full activity log with user attribution |
-| Local dev | `doppler run -- npm run dev` injects secrets at runtime |
+| Factor             | Doppler                                                 |
+| ------------------ | ------------------------------------------------------- |
+| Setup complexity   | 5-minute setup; CLI-driven                              |
+| Free tier          | 5 team members, unlimited secrets, unlimited projects   |
+| Vercel integration | Native integration (one-click sync)                     |
+| GitHub Actions     | Official action (`dopplerhq/secrets-fetch-action`)      |
+| Rotation support   | Version history + rollback on every secret change       |
+| Audit log          | Full activity log with user attribution                 |
+| Local dev          | `doppler run -- npm run dev` injects secrets at runtime |
 
 Doppler eliminates the need to copy secrets between `.env` files, Vercel dashboard, and CI config. One update propagates everywhere.
 
@@ -53,21 +53,21 @@ Doppler eliminates the need to copy secrets between `.env` files, Vercel dashboa
 
 ### AWS Secrets Manager
 
-| Pros | Cons |
-|---|---|
-| Deep AWS integration | Requires AWS account and IAM setup |
+| Pros                          | Cons                                         |
+| ----------------------------- | -------------------------------------------- |
+| Deep AWS integration          | Requires AWS account and IAM setup           |
 | Automatic rotation via Lambda | $0.40/secret/month + $0.05 per 10K API calls |
-| Native in AWS-hosted stacks | Overkill for Vercel-deployed Next.js |
+| Native in AWS-hosted stacks   | Overkill for Vercel-deployed Next.js         |
 
 **Verdict:** Best choice if the project moves to AWS ECS/EKS. Not justified for a Vercel + Supabase stack.
 
 ### Infisical
 
-| Pros | Cons |
-|---|---|
-| Open-source, self-hostable | Smaller ecosystem than Doppler |
+| Pros                                   | Cons                                             |
+| -------------------------------------- | ------------------------------------------------ |
+| Open-source, self-hostable             | Smaller ecosystem than Doppler                   |
 | Generous free tier (unlimited secrets) | Vercel integration requires manual webhook setup |
-| E2E encrypted | Less mature CLI tooling |
+| E2E encrypted                          | Less mature CLI tooling                          |
 
 **Verdict:** Strong alternative if self-hosting or open-source preference is a priority. Consider for v2 if vendor lock-in becomes a concern.
 
@@ -112,11 +112,11 @@ doppler configs list --project nosite-prospector
 
 You should see:
 
-| Config | Purpose |
-|---|---|
-| `dev` | Local development |
-| `stg` | Staging (preview deploys on Vercel) |
-| `prd` | Production |
+| Config | Purpose                             |
+| ------ | ----------------------------------- |
+| `dev`  | Local development                   |
+| `stg`  | Staging (preview deploys on Vercel) |
+| `prd`  | Production                          |
 
 If they don't exist, create them:
 
@@ -144,29 +144,29 @@ Add every secret below to each Doppler environment. Values differ per environmen
 
 ### Backend-Only Secrets (never prefix with `NEXT_PUBLIC_`)
 
-| Secret Name | Description | Provider |
-|---|---|---|
-| `GOOGLE_PLACES_KEY` | Google Places API key (IP-restricted) | Google Cloud |
-| `GOOGLE_GEOCODING_KEY` | Google Geocoding API key (IP-restricted) | Google Cloud |
-| `YELP_API_KEY` | Yelp Fusion API key | Yelp |
-| `DATABASE_URL` | Pooled PostgreSQL connection string | Supabase |
-| `DIRECT_URL` | Direct PostgreSQL connection string (migrations) | Supabase |
-| `SUPABASE_SERVICE_KEY` | Supabase service role key (bypasses RLS) | Supabase |
-| `REDIS_URL` | Upstash Redis REST URL | Upstash |
-| `REDIS_TOKEN` | Upstash Redis REST token | Upstash |
-| `STRIPE_SECRET_KEY` | Stripe secret key | Stripe |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret | Stripe |
-| `SENTRY_DSN` | Sentry project DSN | Sentry |
+| Secret Name             | Description                                      | Provider     |
+| ----------------------- | ------------------------------------------------ | ------------ |
+| `GOOGLE_PLACES_KEY`     | Google Places API key (IP-restricted)            | Google Cloud |
+| `GOOGLE_GEOCODING_KEY`  | Google Geocoding API key (IP-restricted)         | Google Cloud |
+| `YELP_API_KEY`          | Yelp Fusion API key                              | Yelp         |
+| `DATABASE_URL`          | Pooled PostgreSQL connection string              | Supabase     |
+| `DIRECT_URL`            | Direct PostgreSQL connection string (migrations) | Supabase     |
+| `SUPABASE_SERVICE_KEY`  | Supabase service role key (bypasses RLS)         | Supabase     |
+| `REDIS_URL`             | Upstash Redis REST URL                           | Upstash      |
+| `REDIS_TOKEN`           | Upstash Redis REST token                         | Upstash      |
+| `STRIPE_SECRET_KEY`     | Stripe secret key                                | Stripe       |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret                    | Stripe       |
+| `SENTRY_DSN`            | Sentry project DSN                               | Sentry       |
 
 ### Frontend-Safe Secrets (prefixed with `NEXT_PUBLIC_`)
 
-| Secret Name | Description | Provider |
-|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Supabase |
-| `SUPABASE_ANON_KEY` | Supabase anon/public key | Supabase |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | Stripe |
-| `NEXT_PUBLIC_SENTRY_DSN` | Sentry DSN (client-side) | Sentry |
-| `NEXT_PUBLIC_APP_URL` | App base URL | Self |
+| Secret Name                          | Description              | Provider |
+| ------------------------------------ | ------------------------ | -------- |
+| `NEXT_PUBLIC_SUPABASE_URL`           | Supabase project URL     | Supabase |
+| `SUPABASE_ANON_KEY`                  | Supabase anon/public key | Supabase |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key   | Stripe   |
+| `NEXT_PUBLIC_SENTRY_DSN`             | Sentry DSN (client-side) | Sentry   |
+| `NEXT_PUBLIC_APP_URL`                | App base URL             | Self     |
 
 ### Adding Secrets via CLI
 
@@ -182,11 +182,11 @@ doppler secrets upload .env.local --project nosite-prospector --config dev
 
 ## 6. Environment Configuration
 
-| Environment | Doppler Config | Supabase Project | Stripe Mode | Redis Instance |
-|---|---|---|---|---|
-| Development | `dev` | `nosite-dev` | Test keys (`sk_test_`) | `nosite-dev` (Upstash free tier) |
-| Staging | `stg` | `nosite-stg` | Test keys (`sk_test_`) | `nosite-stg` (Upstash free tier) |
-| Production | `prd` | `nosite-prod` | Live keys (`sk_live_`) | `nosite-prod` (Upstash paid) |
+| Environment | Doppler Config | Supabase Project | Stripe Mode            | Redis Instance                   |
+| ----------- | -------------- | ---------------- | ---------------------- | -------------------------------- |
+| Development | `dev`          | `nosite-dev`     | Test keys (`sk_test_`) | `nosite-dev` (Upstash free tier) |
+| Staging     | `stg`          | `nosite-stg`     | Test keys (`sk_test_`) | `nosite-stg` (Upstash free tier) |
+| Production  | `prd`          | `nosite-prod`    | Live keys (`sk_live_`) | `nosite-prod` (Upstash paid)     |
 
 > Use separate Supabase projects for each environment to ensure complete data isolation.
 
@@ -286,28 +286,28 @@ After setup, any secret change in Doppler propagates to Vercel within seconds. N
 
 ### Google Cloud API Keys (Places + Geocoding)
 
-| Step | Action |
-|---|---|
-| 1 | Go to [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials). |
-| 2 | Click **Create Credentials → API Key**. A new key is generated. |
-| 3 | Apply the same restrictions as the old key (IP restriction, API restriction to Places + Geocoding). |
-| 4 | Update `GOOGLE_PLACES_KEY` and/or `GOOGLE_GEOCODING_KEY` in Doppler (`prd` config). |
-| 5 | Verify the app works with the new key (search for a test location). |
-| 6 | Delete the old key in the Google Cloud Console. |
-| 7 | Log the rotation in the team incident/ops channel. |
+| Step | Action                                                                                              |
+| ---- | --------------------------------------------------------------------------------------------------- |
+| 1    | Go to [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials).      |
+| 2    | Click **Create Credentials → API Key**. A new key is generated.                                     |
+| 3    | Apply the same restrictions as the old key (IP restriction, API restriction to Places + Geocoding). |
+| 4    | Update `GOOGLE_PLACES_KEY` and/or `GOOGLE_GEOCODING_KEY` in Doppler (`prd` config).                 |
+| 5    | Verify the app works with the new key (search for a test location).                                 |
+| 6    | Delete the old key in the Google Cloud Console.                                                     |
+| 7    | Log the rotation in the team incident/ops channel.                                                  |
 
 **Rotation cadence:** Every 90 days, or immediately on suspected compromise.
 
 ### Yelp Fusion API Key
 
-| Step | Action |
-|---|---|
-| 1 | Go to [api.yelp.com/manage_api_keys](https://api.yelp.com/manage_api_keys). |
-| 2 | Yelp does not support creating a second key on the same app. Create a new app to get a fresh key. |
-| 3 | Update `YELP_API_KEY` in Doppler (`prd` config). |
-| 4 | Verify the app returns Yelp results for a test search. |
-| 5 | Delete the old Yelp app. |
-| 6 | Log the rotation. |
+| Step | Action                                                                                            |
+| ---- | ------------------------------------------------------------------------------------------------- |
+| 1    | Go to [api.yelp.com/manage_api_keys](https://api.yelp.com/manage_api_keys).                       |
+| 2    | Yelp does not support creating a second key on the same app. Create a new app to get a fresh key. |
+| 3    | Update `YELP_API_KEY` in Doppler (`prd` config).                                                  |
+| 4    | Verify the app returns Yelp results for a test search.                                            |
+| 5    | Delete the old Yelp app.                                                                          |
+| 6    | Log the rotation.                                                                                 |
 
 **Rotation cadence:** Every 90 days, or immediately on suspected compromise.
 
@@ -317,14 +317,14 @@ After setup, any secret change in Doppler propagates to Vercel within seconds. N
 
 Supabase anon and service role keys are derived from the project's JWT secret. To rotate:
 
-| Step | Action |
-|---|---|
-| 1 | In the Supabase dashboard, go to **Project Settings → API**. |
-| 2 | Under **JWT Settings**, click **Generate new JWT secret**. |
-| 3 | This regenerates both `anon` and `service_role` keys. Copy both. |
-| 4 | Update `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_KEY` in Doppler (`prd`). |
-| 5 | Redeploy the app (all active sessions will be invalidated). |
-| 6 | Log the rotation. |
+| Step | Action                                                                    |
+| ---- | ------------------------------------------------------------------------- |
+| 1    | In the Supabase dashboard, go to **Project Settings → API**.              |
+| 2    | Under **JWT Settings**, click **Generate new JWT secret**.                |
+| 3    | This regenerates both `anon` and `service_role` keys. Copy both.          |
+| 4    | Update `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_KEY` in Doppler (`prd`). |
+| 5    | Redeploy the app (all active sessions will be invalidated).               |
+| 6    | Log the rotation.                                                         |
 
 **Rotation cadence:** Every 180 days, or immediately on suspected compromise.
 
@@ -332,41 +332,41 @@ Supabase anon and service role keys are derived from the project's JWT secret. T
 
 ### Supabase Database Password
 
-| Step | Action |
-|---|---|
-| 1 | In the Supabase dashboard: **Project Settings → Database → Reset database password**. |
-| 2 | Generate a new password. |
-| 3 | Update `DATABASE_URL` and `DIRECT_URL` in Doppler (replace the password segment). |
-| 4 | Redeploy the app. Prisma will reconnect automatically. |
-| 5 | Run `npx prisma migrate status` against the new URL to verify connectivity. |
-| 6 | Log the rotation. |
+| Step | Action                                                                                |
+| ---- | ------------------------------------------------------------------------------------- |
+| 1    | In the Supabase dashboard: **Project Settings → Database → Reset database password**. |
+| 2    | Generate a new password.                                                              |
+| 3    | Update `DATABASE_URL` and `DIRECT_URL` in Doppler (replace the password segment).     |
+| 4    | Redeploy the app. Prisma will reconnect automatically.                                |
+| 5    | Run `npx prisma migrate status` against the new URL to verify connectivity.           |
+| 6    | Log the rotation.                                                                     |
 
 **Rotation cadence:** Every 90 days, or immediately on suspected compromise.
 
 ### Upstash Redis Token
 
-| Step | Action |
-|---|---|
-| 1 | In the Upstash console, go to your database detail page. |
-| 2 | Under **REST API**, click **Reset Token**. |
-| 3 | Copy the new `UPSTASH_REDIS_REST_TOKEN`. |
-| 4 | Update `REDIS_TOKEN` in Doppler (`prd`). |
-| 5 | Verify the app can read/write Redis (run a test search and check quota counter). |
-| 6 | Log the rotation. |
+| Step | Action                                                                           |
+| ---- | -------------------------------------------------------------------------------- |
+| 1    | In the Upstash console, go to your database detail page.                         |
+| 2    | Under **REST API**, click **Reset Token**.                                       |
+| 3    | Copy the new `UPSTASH_REDIS_REST_TOKEN`.                                         |
+| 4    | Update `REDIS_TOKEN` in Doppler (`prd`).                                         |
+| 5    | Verify the app can read/write Redis (run a test search and check quota counter). |
+| 6    | Log the rotation.                                                                |
 
 **Rotation cadence:** Every 90 days, or immediately on suspected compromise.
 
 ### Stripe Keys
 
-| Step | Action |
-|---|---|
-| 1 | In the Stripe dashboard: **Developers → API keys → Roll key**. |
-| 2 | Stripe generates a new key and gives you a grace period to migrate (72h for secret key). |
-| 3 | Update `STRIPE_SECRET_KEY` in Doppler (`prd`). |
-| 4 | For the webhook secret: go to **Developers → Webhooks → Signing secret → Roll secret**. Update `STRIPE_WEBHOOK_SECRET` in Doppler. |
-| 5 | Redeploy the app. |
-| 6 | Verify by creating a test checkout session. |
-| 7 | Log the rotation. |
+| Step | Action                                                                                                                             |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | In the Stripe dashboard: **Developers → API keys → Roll key**.                                                                     |
+| 2    | Stripe generates a new key and gives you a grace period to migrate (72h for secret key).                                           |
+| 3    | Update `STRIPE_SECRET_KEY` in Doppler (`prd`).                                                                                     |
+| 4    | For the webhook secret: go to **Developers → Webhooks → Signing secret → Roll secret**. Update `STRIPE_WEBHOOK_SECRET` in Doppler. |
+| 5    | Redeploy the app.                                                                                                                  |
+| 6    | Verify by creating a test checkout session.                                                                                        |
+| 7    | Log the rotation.                                                                                                                  |
 
 **Rotation cadence:** Every 90 days, or immediately on suspected compromise.
 
@@ -374,13 +374,13 @@ Supabase anon and service role keys are derived from the project's JWT secret. T
 
 ## 11. Access Control
 
-| Role | Doppler Access | Secrets Visibility |
-|---|---|---|
-| Founder / Lead | Admin on all configs | Full read/write |
-| Backend Developer | Member on `dev` and `stg` | Read on `dev`/`stg`, no `prd` access |
-| Frontend Developer | Member on `dev` only | Read `NEXT_PUBLIC_*` vars only |
-| CI/CD (GitHub Actions) | Service token per config | Read-only, scoped to specific config |
-| Vercel (Deployment) | Integration sync | Automatic, read-only |
+| Role                   | Doppler Access            | Secrets Visibility                   |
+| ---------------------- | ------------------------- | ------------------------------------ |
+| Founder / Lead         | Admin on all configs      | Full read/write                      |
+| Backend Developer      | Member on `dev` and `stg` | Read on `dev`/`stg`, no `prd` access |
+| Frontend Developer     | Member on `dev` only      | Read `NEXT_PUBLIC_*` vars only       |
+| CI/CD (GitHub Actions) | Service token per config  | Read-only, scoped to specific config |
+| Vercel (Deployment)    | Integration sync          | Automatic, read-only                 |
 
 > Use Doppler's **Workplace Roles** to enforce these boundaries. Never share service tokens across environments.
 
@@ -391,6 +391,7 @@ Supabase anon and service role keys are derived from the project's JWT secret. T
 ### Activity Log
 
 Doppler's activity log records every event:
+
 - Secret created, updated, or deleted
 - User who made the change
 - Timestamp and IP address
@@ -411,4 +412,4 @@ Access via: **Doppler Dashboard → Project → Activity**.
 
 ---
 
-*Last updated: 2026-02-21*
+_Last updated: 2026-02-21_

@@ -75,10 +75,10 @@ You need **two restricted keys**: one for backend (server-to-server, IP-restrict
 
 ### 1.5 Default Quotas
 
-| API | Default Quota |
-|---|---|
-| Places API (Nearby Search) | 5,000 requests/day |
-| Geocoding API | 40,000 requests/day |
+| API                        | Default Quota       |
+| -------------------------- | ------------------- |
+| Places API (Nearby Search) | 5,000 requests/day  |
+| Geocoding API              | 40,000 requests/day |
 
 These quotas can be raised via a quota increase request in the console if needed.
 
@@ -120,12 +120,12 @@ Prevents runaway API costs.
 
 ### 2.3 Rate Limits
 
-| Limit | Value |
-|---|---|
-| Daily request quota | 5,000 calls/day |
-| Per-second rate limit | 5 calls/second |
-| Results per request (Business Search) | Max 50 |
-| Total results accessible via offset | Max 1,000 |
+| Limit                                 | Value           |
+| ------------------------------------- | --------------- |
+| Daily request quota                   | 5,000 calls/day |
+| Per-second rate limit                 | 5 calls/second  |
+| Results per request (Business Search) | Max 50          |
+| Total results accessible via offset   | Max 1,000       |
 
 The Yelp API does not require billing setup — the key works immediately on the free tier. There is no paid tier upgrade for higher quotas; if you need more, contact Yelp's partner team.
 
@@ -147,10 +147,10 @@ https://nominatim.openstreetmap.org/search?q=...&format=json
 
 **Usage policy constraints:**
 
-| Constraint | Value |
-|---|---|
-| Rate limit | 1 request/second (hard limit) |
-| Bulk geocoding | Not permitted |
+| Constraint      | Value                                        |
+| --------------- | -------------------------------------------- |
+| Rate limit      | 1 request/second (hard limit)                |
+| Bulk geocoding  | Not permitted                                |
 | Required header | `User-Agent: NoSite Prospector <your-email>` |
 
 Set the `User-Agent` header on every Nominatim request in `GeocodingService`. No env var needed.
@@ -192,11 +192,11 @@ Use Mapbox if Nominatim's 1 req/sec limit becomes a bottleneck.
 1. In the Supabase dashboard, go to **Project Settings → API**.
 2. Copy the following values to `.env.local`:
 
-| Setting | Env Var |
-|---|---|
-| Project URL | `NEXT_PUBLIC_SUPABASE_URL` |
-| `anon` / `public` key | `SUPABASE_ANON_KEY` |
-| `service_role` key | `SUPABASE_SERVICE_KEY` |
+| Setting               | Env Var                    |
+| --------------------- | -------------------------- |
+| Project URL           | `NEXT_PUBLIC_SUPABASE_URL` |
+| `anon` / `public` key | `SUPABASE_ANON_KEY`        |
+| `service_role` key    | `SUPABASE_SERVICE_KEY`     |
 
 > **Security:** The `service_role` key bypasses Row Level Security. Never expose it in client-side code or `NEXT_PUBLIC_` variables.
 
@@ -233,6 +233,7 @@ datasource db {
 ### 4.4 Configure Auth Providers
 
 **Email/Password:**
+
 - Enabled by default. No configuration needed.
 
 **Google OAuth:**
@@ -282,21 +283,21 @@ Upstash provides serverless Redis with a generous free tier, compatible with Ver
 1. On the database detail page, find the **REST API** section.
 2. Copy:
 
-| Value | Env Var |
-|---|---|
-| **UPSTASH_REDIS_REST_URL** | `REDIS_URL` |
+| Value                        | Env Var       |
+| ---------------------------- | ------------- |
+| **UPSTASH_REDIS_REST_URL**   | `REDIS_URL`   |
 | **UPSTASH_REDIS_REST_TOKEN** | `REDIS_TOKEN` |
 
 Paste both into `.env.local`.
 
 ### 5.4 Free Tier Limits
 
-| Limit | Value |
-|---|---|
-| Max commands/day | 10,000 |
-| Max data size | 256 MB |
-| Max concurrent connections | 100 |
-| Price | Free |
+| Limit                      | Value  |
+| -------------------------- | ------ |
+| Max commands/day           | 10,000 |
+| Max data size              | 256 MB |
+| Max concurrent connections | 100    |
+| Price                      | Free   |
 
 The free tier is sufficient for development and early-stage production. Upgrade to the Pay-as-you-go plan if daily command usage consistently exceeds 10,000.
 
@@ -304,34 +305,34 @@ The free tier is sufficient for development and early-stage production. Upgrade 
 
 Redis is used for two purposes:
 
-| Purpose | Key Pattern | TTL |
-|---|---|---|
-| Daily search quota counters | `quota:{userId}:{YYYY-MM-DD}` | 86400s (resets at midnight UTC) |
-| BullMQ job queue (HEAD checks) | Managed by BullMQ library | N/A |
+| Purpose                        | Key Pattern                   | TTL                             |
+| ------------------------------ | ----------------------------- | ------------------------------- |
+| Daily search quota counters    | `quota:{userId}:{YYYY-MM-DD}` | 86400s (resets at midnight UTC) |
+| BullMQ job queue (HEAD checks) | Managed by BullMQ library     | N/A                             |
 
 ---
 
 ## 6. Quick Reference: Environment Variables
 
-| Variable | Description | Where to find |
-|---|---|---|
-| `GOOGLE_PLACES_KEY` | Google Places API key (IP-restricted, backend) | Google Cloud Console → Credentials |
-| `GOOGLE_GEOCODING_KEY` | Google Geocoding API key (IP-restricted, backend) | Google Cloud Console → Credentials |
-| `YELP_API_KEY` | Yelp Fusion API key | api.yelp.com → My App |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Supabase → Project Settings → API |
-| `SUPABASE_ANON_KEY` | Supabase public/anon key | Supabase → Project Settings → API |
-| `SUPABASE_SERVICE_KEY` | Supabase service role key (backend only) | Supabase → Project Settings → API |
-| `DATABASE_URL` | Pooled PostgreSQL connection string | Supabase → Project Settings → Database |
-| `DIRECT_URL` | Direct PostgreSQL connection string (migrations only) | Supabase → Project Settings → Database |
-| `REDIS_URL` | Upstash Redis REST URL | Upstash console → Database detail |
-| `REDIS_TOKEN` | Upstash Redis REST token | Upstash console → Database detail |
-| `STRIPE_SECRET_KEY` | Stripe secret key (backend only) | Stripe Dashboard → Developers → API keys |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | Stripe Dashboard → Developers → API keys |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret | Stripe Dashboard → Webhooks |
-| `SENTRY_DSN` | Sentry DSN for error tracking | Sentry → Project Settings → Client Keys |
+| Variable                             | Description                                           | Where to find                            |
+| ------------------------------------ | ----------------------------------------------------- | ---------------------------------------- |
+| `GOOGLE_PLACES_KEY`                  | Google Places API key (IP-restricted, backend)        | Google Cloud Console → Credentials       |
+| `GOOGLE_GEOCODING_KEY`               | Google Geocoding API key (IP-restricted, backend)     | Google Cloud Console → Credentials       |
+| `YELP_API_KEY`                       | Yelp Fusion API key                                   | api.yelp.com → My App                    |
+| `NEXT_PUBLIC_SUPABASE_URL`           | Supabase project URL                                  | Supabase → Project Settings → API        |
+| `SUPABASE_ANON_KEY`                  | Supabase public/anon key                              | Supabase → Project Settings → API        |
+| `SUPABASE_SERVICE_KEY`               | Supabase service role key (backend only)              | Supabase → Project Settings → API        |
+| `DATABASE_URL`                       | Pooled PostgreSQL connection string                   | Supabase → Project Settings → Database   |
+| `DIRECT_URL`                         | Direct PostgreSQL connection string (migrations only) | Supabase → Project Settings → Database   |
+| `REDIS_URL`                          | Upstash Redis REST URL                                | Upstash console → Database detail        |
+| `REDIS_TOKEN`                        | Upstash Redis REST token                              | Upstash console → Database detail        |
+| `STRIPE_SECRET_KEY`                  | Stripe secret key (backend only)                      | Stripe Dashboard → Developers → API keys |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key                                | Stripe Dashboard → Developers → API keys |
+| `STRIPE_WEBHOOK_SECRET`              | Stripe webhook signing secret                         | Stripe Dashboard → Webhooks              |
+| `SENTRY_DSN`                         | Sentry DSN for error tracking                         | Sentry → Project Settings → Client Keys  |
 
 See `.env.example` for the full list with placeholder values.
 
 ---
 
-*Last updated: 2026-02-21*
+_Last updated: 2026-02-21_
