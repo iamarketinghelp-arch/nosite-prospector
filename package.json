@@ -13,9 +13,13 @@
     "format:check": "prettier --check .",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "verify-infra": "tsx scripts/verify-infra.ts",
+    "test-redis": "tsx scripts/test-redis.ts",
     "prepare": "husky"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
+    "@upstash/redis": "^1.36.2",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -33,6 +37,7 @@
     "prettier": "^3",
     "prettier-plugin-tailwindcss": "^0.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   },
   "lint-staged": {
